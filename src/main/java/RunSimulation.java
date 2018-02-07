@@ -1,5 +1,6 @@
 import com.pb.common.matrix.Matrix;
 import org.matsim.api.core.v01.population.Population;
+import org.matsim.api.core.v01.population.PopulationWriter;
 import org.matsim.core.config.Config;
 import org.matsim.core.config.ConfigUtils;
 import org.matsim.core.config.groups.*;
@@ -155,13 +156,18 @@ public class RunSimulation {
 
         //alternatively create population from data
 
-        Population population = scenario.getPopulation();
+            Population population = scenario.getPopulation();
 
-        PopGenerator popGenerator = new PopGenerator();
+            PopGenerator popGenerator = new PopGenerator();
 
-        population = popGenerator.createASP(population);
+            population = popGenerator.createASP(population);
 
-        scenario.setPopulation(population);
+            scenario.setPopulation(population);
+
+            Population pop1 = scenario.getPopulation();
+
+
+
 
 
         // Initialize controller
