@@ -58,6 +58,7 @@ public class RunSimulation {
         //config.transit().setTransitModes(transitModes);
 
 
+
         // Plans
         //		config.plans().setInputFile(inputPlansFile);
 
@@ -78,7 +79,7 @@ public class RunSimulation {
         config.controler().setOutputDirectory(outputDirectory);
         config.controler().setFirstIteration(1);
 
-        int numberOfIterations = 10;
+        int numberOfIterations = 1;
 
         config.controler().setLastIteration(numberOfIterations);
         config.controler().setMobsim("qsim");
@@ -149,10 +150,18 @@ public class RunSimulation {
         MutableScenario scenario = (MutableScenario) ScenarioUtils.loadScenario(config);
 
 
-        PopulationReader populationReader = new PopulationReader(scenario);
-        populationReader.readFile(plansFile);
+//        PopulationReader populationReader = new PopulationReader(scenario);
+//        populationReader.readFile(plansFile);
 
         //alternatively create population from data
+
+        Population population = scenario.getPopulation();
+
+        PopGenerator popGenerator = new PopGenerator();
+
+        population = popGenerator.createASP(population);
+
+        scenario.setPopulation(population);
 
 
         // Initialize controller
